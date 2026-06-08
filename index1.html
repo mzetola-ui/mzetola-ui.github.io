@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nombre Apellido — Actor & Ingeniero Electrónico</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F5F0E8;
+    --ink: #1A1A1A;
+    --ink-soft: #4A4A4A;
+    --copper: #B85C2A;
+    --copper-light: #E8C9B0;
+    --circuit: #2A4A3A;
+    --circuit-light: #C8E0D0;
+    --divider: rgba(26,26,26,0.12);
+    --serif: 'Playfair Display', Georgia, serif;
+    --mono: 'DM Mono', 'Courier New', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 2rem;
+    border-bottom: 1px solid var(--divider);
+    position: sticky;
+    top: 0;
+    background: var(--cream);
+    z-index: 100;
+    gap: 1rem;
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1rem;
+    white-space: nowrap;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--copper); }
+  .nav-tag {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    border: 1px solid var(--divider);
+    padding: 3px 8px;
+    white-space: nowrap;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 88vh;
+  }
+  .hero-left {
+    padding: 4rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid var(--divider);
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 1.5rem;
+  }
+  .hero-name {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 5vw, 4.5rem);
+    line-height: 1.05;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+  }
+  .hero-tagline {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.8;
+    max-width: 360px;
+    margin-bottom: 2.5rem;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 11px 22px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--copper); }
+  .btn-outline {
+    background: transparent;
+    color: var(--ink);
+    padding: 11px 22px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--ink);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--copper); color: var(--copper); }
+
+  .hero-right {
+    background: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    min-height: 320px;
+  }
+  .hero-svg { width: 100%; max-width: 340px; }
+
+  /* ── DUALITY ── */
+  .duality {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--divider);
+  }
+  .duality-panel {
+    padding: 3.5rem 2.5rem;
+  }
+  .duality-panel:first-child {
+    border-right: 1px solid var(--divider);
+    background: #F0EAE0;
+  }
+  .duality-panel:last-child {
+    background: #E8EDE8;
+  }
+  .panel-label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+  .panel-label.theater { color: var(--copper); }
+  .panel-label.tech { color: var(--circuit); }
+  .panel-title {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.2;
+  }
+  .panel-body {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+  .skill-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .skill-tag {
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    padding: 4px 10px;
+  }
+  .skill-tag.theater { background: var(--copper-light); color: #5A2A10; }
+  .skill-tag.tech { background: var(--circuit-light); color: #1A3A2A; }
+
+  /* ── PROJECTS ── */
+  .section {
+    padding: 4rem 2.5rem;
+    border-top: 1px solid var(--divider);
+  }
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 2.5rem;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+  }
+  .section-count {
+    font-size: 11px;
+    color: var(--ink-soft);
+    letter-spacing: 0.1em;
+  }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+  }
+  .project-card {
+    border: 1px solid var(--divider);
+    padding: 1.25rem;
+    transition: border-color 0.2s;
+    background: white;
+  }
+  .project-card:hover { border-color: var(--copper); }
+  .project-type {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+  .project-type.theater { color: var(--copper); }
+  .project-type.tech { color: var(--circuit); }
+  .project-name {
+    font-family: var(--serif);
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+  }
+  .project-desc {
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+  }
+  .project-year {
+    font-size: 11px;
+    color: var(--ink-soft);
+    opacity: 0.6;
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    padding: 4rem 2.5rem;
+    border-top: 1px solid var(--divider);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .contact-title {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    line-height: 1.1;
+    margin-bottom: 0.8rem;
+  }
+  .contact-sub {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.8;
+  }
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .contact-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.9rem 1.1rem;
+    border: 1px solid var(--divider);
+    text-decoration: none;
+    color: var(--ink);
+    font-size: 13px;
+    transition: all 0.2s;
+    background: white;
+  }
+  .contact-link:hover { border-color: var(--copper); color: var(--copper); }
+  .contact-arrow { opacity: 0.4; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 1.5rem 2.5rem;
+    border-top: 1px solid var(--divider);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: var(--ink-soft);
+    letter-spacing: 0.05em;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-left > * { animation: fadeUp 0.7s ease both; }
+  .hero-eyebrow  { animation-delay: 0.1s; }
+  .hero-name     { animation-delay: 0.2s; }
+  .hero-tagline  { animation-delay: 0.3s; }
+  .hero-ctas     { animation-delay: 0.4s; }
+
+  /* ══════════════════════════════════════
+     RESPONSIVE — tablet (≤768px)
+  ══════════════════════════════════════ */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.2rem; }
+    .nav-links { display: none; }
+
+    .hero {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+    .hero-left {
+      padding: 2.5rem 1.5rem;
+      border-right: none;
+      border-bottom: 1px solid var(--divider);
+    }
+    .hero-right {
+      min-height: 260px;
+      padding: 2rem 1.5rem;
+    }
+
+    .duality { grid-template-columns: 1fr; }
+    .duality-panel:first-child {
+      border-right: none;
+      border-bottom: 1px solid var(--divider);
+    }
+    .duality-panel { padding: 2.5rem 1.5rem; }
+
+    .section { padding: 2.5rem 1.5rem; }
+    .projects-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .contact {
+      grid-template-columns: 1fr;
+      padding: 2.5rem 1.5rem;
+      gap: 2rem;
+    }
+    footer { padding: 1.2rem 1.5rem; }
+  }
+
+  /* ══════════════════════════════════════
+     RESPONSIVE — móvil (≤480px)
+  ══════════════════════════════════════ */
+  @media (max-width: 480px) {
+    nav { padding: 0.9rem 1rem; }
+    .nav-tag { display: none; }
+
+    .hero-left { padding: 2rem 1rem; }
+    .hero-tagline { max-width: 100%; }
+
+    .duality-panel { padding: 2rem 1rem; }
+
+    .section { padding: 2rem 1rem; }
+    .section-header { flex-direction: column; gap: 0.3rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+
+    .contact { padding: 2rem 1rem; }
+    footer { padding: 1rem; flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Nombre Apellido</span>
+  <ul class="nav-links">
+    <li><a href="#teatro">Teatro</a></li>
+    <li><a href="#tech">Ingeniería</a></li>
+    <li><a href="#proyectos">Proyectos</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <span class="nav-tag">AR · Buenos Aires</span>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Actor · Ingeniero Electrónico</p>
+    <h1 class="hero-name">Nombre<br>Apellido</h1>
+    <p class="hero-tagline">
+      Dos lenguajes. Una misma precisión.<br>
+      De la escena al circuito, del guión al código.
+    </p>
+    <div class="hero-ctas">
+      <a href="#proyectos" class="btn-primary">Ver proyectos</a>
+      <a href="#contacto" class="btn-outline">Contactar</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <svg class="hero-svg" viewBox="0 0 380 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="120" cy="140" rx="70" ry="88" fill="none" stroke="#B85C2A" stroke-width="1.5"/>
+      <ellipse cx="100" cy="118" rx="9" ry="13" fill="none" stroke="#B85C2A" stroke-width="1.2"/>
+      <ellipse cx="140" cy="118" rx="9" ry="13" fill="none" stroke="#B85C2A" stroke-width="1.2"/>
+      <path d="M98 160 Q120 178 142 160" stroke="#B85C2A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <line x1="120" y1="52" x2="120" y2="38" stroke="#B85C2A" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="50" y1="80" x2="38" y2="70" stroke="#B85C2A" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="190" y1="80" x2="202" y2="70" stroke="#B85C2A" stroke-width="1" stroke-dasharray="3,3"/>
+      <ellipse cx="260" cy="195" rx="70" ry="88" fill="none" stroke="#2A4A3A" stroke-width="1.5"/>
+      <ellipse cx="240" cy="173" rx="9" ry="13" fill="none" stroke="#2A4A3A" stroke-width="1.2"/>
+      <ellipse cx="280" cy="173" rx="9" ry="13" fill="none" stroke="#2A4A3A" stroke-width="1.2"/>
+      <path d="M238 215 Q260 200 282 215" stroke="#2A4A3A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <line x1="40" y1="260" x2="340" y2="260" stroke="#4A8A6A" stroke-width="0.8"/>
+      <line x1="40" y1="278" x2="340" y2="278" stroke="#4A8A6A" stroke-width="0.8"/>
+      <line x1="40" y1="296" x2="340" y2="296" stroke="#4A8A6A" stroke-width="0.8"/>
+      <rect x="80" y="254" width="40" height="12" rx="2" fill="none" stroke="#4A8A6A" stroke-width="1"/>
+      <rect x="200" y="272" width="40" height="12" rx="2" fill="none" stroke="#4A8A6A" stroke-width="1"/>
+      <circle cx="80" cy="260" r="3" fill="#B85C2A"/>
+      <circle cx="200" cy="278" r="3" fill="#B85C2A"/>
+      <circle cx="280" cy="260" r="3" fill="#2A4A3A"/>
+      <circle cx="140" cy="296" r="3" fill="#2A4A3A"/>
+      <line x1="160" y1="220" x2="160" y2="260" stroke="#4A8A6A" stroke-width="0.8" stroke-dasharray="2,2"/>
+      <line x1="260" y1="283" x2="260" y2="296" stroke="#4A8A6A" stroke-width="0.8" stroke-dasharray="2,2"/>
+      <text x="55" y="242" fill="#B85C2A" font-family="'DM Mono', monospace" font-size="9" letter-spacing="2">TEATRO</text>
+      <text x="245" y="242" fill="#2A4A3A" font-family="'DM Mono', monospace" font-size="9" letter-spacing="2">IoT / EMB</text>
+    </svg>
+  </div>
+</section>
+
+<section class="duality">
+  <div class="duality-panel" id="teatro">
+    <p class="panel-label theater">// Teatro &amp; Actuación</p>
+    <h2 class="panel-title">Presencia<br>en escena</h2>
+    <p class="panel-body">
+      Formado en [nombre del conservatorio o escuela]. Experiencia en teatro independiente, comercial y frente a cámara. Cada personaje es un sistema a entender.
+    </p>
+    <ul class="skill-list">
+      <li><span class="skill-tag theater">Teatro independiente</span></li>
+      <li><span class="skill-tag theater">Actuación frente a cámara</span></li>
+      <li><span class="skill-tag theater">Stanislavski</span></li>
+      <li><span class="skill-tag theater">Voz y dicción</span></li>
+      <li><span class="skill-tag theater">Improvisación</span></li>
+    </ul>
+  </div>
+  <div class="duality-panel" id="tech">
+    <p class="panel-label tech">// Ingeniería &amp; IoT</p>
+    <h2 class="panel-title">Sistemas<br>que piensan</h2>
+    <p class="panel-body">
+      Ingeniero Electrónico por [universidad]. Especializado en sistemas embebidos, IoT agrícola y electrónica aplicada. La lógica también es un arte.
+    </p>
+    <ul class="skill-list">
+      <li><span class="skill-tag tech">ESP32 / Arduino</span></li>
+      <li><span class="skill-tag tech">Firmware C/C++</span></li>
+      <li><span class="skill-tag tech">IoT / MQTT</span></li>
+      <li><span class="skill-tag tech">Sensores &amp; dataloggers</span></li>
+      <li><span class="skill-tag tech">Agtech</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="proyectos">
+  <div class="section-header">
+    <h2 class="section-title">Proyectos</h2>
+    <span class="section-count">06 seleccionados</span>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <p class="project-type theater">Teatro</p>
+      <h3 class="project-name">Obra / Espectáculo 1</h3>
+      <p class="project-desc">Descripción breve del rol o la producción. Dónde fue presentado y duración de temporada.</p>
+      <p class="project-year">2024</p>
+    </div>
+    <div class="project-card">
+      <p class="project-type theater">Teatro</p>
+      <h3 class="project-name">Obra / Espectáculo 2</h3>
+      <p class="project-desc">Descripción breve del rol o la producción. Dónde fue presentado y duración de temporada.</p>
+      <p class="project-year">2023</p>
+    </div>
+    <div class="project-card">
+      <p class="project-type theater">Audiovisual</p>
+      <h3 class="project-name">Cortometraje / Publicidad</h3>
+      <p class="project-desc">Participación en producción audiovisual. Rol, dirección y dónde puede verse.</p>
+      <p class="project-year">2023</p>
+    </div>
+    <div class="project-card">
+      <p class="project-type tech">IoT · INTA</p>
+      <h3 class="project-name">Datalogger de temperatura</h3>
+      <p class="project-desc">Sistema de monitoreo con ESP32, DS18B20 y SD card. Logging por día en CSV con RTC DS3231.</p>
+      <p class="project-year">2024</p>
+    </div>
+    <div class="project-card">
+      <p class="project-type tech">Agtech</p>
+      <h3 class="project-name">Balanza bovina open-source</h3>
+      <p class="project-desc">Báscula de paso para bovinos con ESP32, celdas de carga HX711 e integración RFID ISO 11784.</p>
+      <p class="project-year">2024</p>
+    </div>
+    <div class="project-card">
+      <p class="project-type tech">Hardware</p>
+      <h3 class="project-name">Proyecto técnico 3</h3>
+      <p class="project-desc">Descripción breve del sistema, tecnologías usadas y contexto de aplicación.</p>
+      <p class="project-year">2023</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div>
+    <h2 class="contact-title">¿Trabajamos<br>juntos?</h2>
+    <p class="contact-sub">
+      Disponible para proyectos teatrales, producciones audiovisuales y desarrollo de sistemas embebidos e IoT.
+    </p>
+  </div>
+  <div class="contact-links">
+    <a href="mailto:tu@email.com" class="contact-link">
+      <span>tu@email.com</span>
+      <span class="contact-arrow">→</span>
+    </a>
+    <a href="https://linkedin.com/in/tu-usuario" class="contact-link" target="_blank">
+      <span>LinkedIn</span>
+      <span class="contact-arrow">→</span>
+    </a>
+    <a href="https://github.com/tu-usuario" class="contact-link" target="_blank">
+      <span>GitHub</span>
+      <span class="contact-arrow">→</span>
+    </a>
+    <a href="#" class="contact-link">
+      <span>Descargar CV (PDF)</span>
+      <span class="contact-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Nombre Apellido</span>
+  <span>Actor · Ingeniero Electrónico · Buenos Aires</span>
+</footer>
+
+</body>
+</html>
